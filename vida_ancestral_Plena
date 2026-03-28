@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solopreneur — Vida ideal & riqueza integral</title>
+<style>
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f5f4ef;
+    --color-background-tertiary: #eeede8;
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #5c5c58;
+    --color-text-tertiary: #9c9a92;
+    --color-border-tertiary: rgba(0,0,0,0.12);
+    --color-border-secondary: rgba(0,0,0,0.22);
+    --color-border-primary: rgba(0,0,0,0.35);
+    --color-text-info: #0C447C;
+    --color-background-info: #E6F1FB;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --font-sans: system-ui, -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background-primary: #1e1e1c;
+      --color-background-secondary: #282825;
+      --color-background-tertiary: #323230;
+      --color-text-primary: #e8e6dc;
+      --color-text-secondary: #a8a69e;
+      --color-text-tertiary: #6e6c66;
+      --color-border-tertiary: rgba(255,255,255,0.10);
+      --color-border-secondary: rgba(255,255,255,0.18);
+      --color-border-primary: rgba(255,255,255,0.28);
+      --color-text-info: #85B7EB;
+      --color-background-info: #0c2540;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-sans);background:var(--color-background-tertiary);padding:1.5rem;min-height:100vh}
+  .container{max-width:740px;margin:0 auto}
+  h1{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+  .subtitle{font-size:13px;color:var(--color-text-secondary);margin-bottom:1.5rem}
+  .w{padding:.5rem 0;font-family:var(--font-sans)}
+  .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+  .nb{padding:5px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);font-size:12px;cursor:pointer;transition:all .15s}
+  .nb.on{background:var(--color-background-secondary);color:var(--color-text-primary);font-weight:500;border-color:var(--color-border-primary)}
+  .scr{display:none}.scr.on{display:block}
+  .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px}
+  .card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:5px}
+  .card-body{font-size:12px;color:var(--color-text-secondary);line-height:1.7}
+  .badge{font-size:10px;padding:2px 9px;border-radius:99px;display:inline-block;margin-bottom:6px}
+  .sec{font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin:1.25rem 0 .7rem}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  @media(max-width:520px){.row2{grid-template-columns:1fr}}
+  .ask-btn{padding:7px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-info);font-size:12px;cursor:pointer;margin-top:10px;margin-right:6px}
+  .good{border-left:3px solid #1D9E75;border-radius:0;padding:10px 14px;margin-bottom:8px;background:#E1F5EE}
+  .good-txt{font-size:12px;color:#085041;line-height:1.6}
+  .warn{border-left:3px solid #BA7517;border-radius:0;padding:10px 14px;margin-bottom:8px;background:#FAEEDA}
+  .warn-txt{font-size:12px;color:#412402;line-height:1.6}
+  .block{display:flex;align-items:stretch;gap:0;margin-bottom:4px;border-radius:var(--border-radius-md);overflow:hidden;cursor:pointer;transition:opacity .15s}
+  .block:hover{opacity:.88}
+  .block-time{font-size:10px;color:var(--color-text-tertiary);min-width:54px;padding:8px 0 8px 2px;display:flex;align-items:center}
+  .block-bar{flex:1;padding:8px 12px;border-radius:var(--border-radius-md)}
+  .block-name{font-size:12px;font-weight:500;margin-bottom:2px}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1rem}
+  .leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+  .leg-dot{width:10px;height:10px;border-radius:2px}
+  .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+  @media(max-width:480px){.pillar-grid{grid-template-columns:1fr 1fr}}
+  .pillar{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px;cursor:pointer;transition:border-color .15s}
+  .pillar.sel{border-width:2px}
+  .p-dot{width:24px;height:24px;border-radius:50%;margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500}
+  .p-name{font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+  .p-sub{font-size:10px;color:var(--color-text-secondary)}
+  .pillar-detail{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
+  .model-block{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:8px}
+  .model-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;flex-wrap:wrap;gap:6px}
+  .model-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+  .model-tag{font-size:10px;padding:2px 9px;border-radius:99px}
+  .model-body{font-size:12px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px}
+  .model-pills{display:flex;flex-wrap:wrap;gap:5px}
+  .pill{font-size:10px;padding:2px 9px;border-radius:99px;border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+  .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .bar-label{font-size:11px;color:var(--color-text-secondary);min-width:120px}
+  .bar-track{flex:1;height:6px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:3px}
+  .bar-val{font-size:11px;color:var(--color-text-tertiary);min-width:28px;text-align:right}
+  .block-detail-box{display:none;background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-top:.5rem}
+  .hint{font-size:11px;color:var(--color-text-tertiary);margin-top:.75rem}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Solopreneur sapiens — vida ideal & riqueza integral</h1>
+  <p class="subtitle">Arquitectura de vida alineada con la biología del homo sapiens</p>
+
+<div class="w">
+<div class="nav">
+  <button class="nb on" onclick="show('dia',this)">El día ideal</button>
+  <button class="nb" onclick="show('negocio',this)">El negocio</button>
+  <button class="nb" onclick="show('pilares',this)">Pilares de riqueza</button>
+  <button class="nb" onclick="show('entorno',this)">Entorno y tribu</button>
+</div>
+
+<div id="dia" class="scr on">
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#E1F5EE;border:1px solid #1D9E75"></div>Cuerpo / movimiento</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#E6F1FB;border:1px solid #185FA5"></div>Trabajo profundo</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#FAEEDA;border:1px solid #BA7517"></div>Creación / exploración</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#EEEDFE;border:1px solid #534AB7"></div>Tribu / conexión</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#F1EFE8;border:1px solid #888780"></div>Transición / descanso</div>
+  </div>
+  <div id="day-blocks"></div>
+  <div id="block-detail" class="block-detail-box">
+    <div id="bd-title" style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px"></div>
+    <div id="bd-neuro" style="font-size:11px;padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:8px"></div>
+    <div id="bd-body" style="font-size:12px;color:var(--color-text-secondary);line-height:1.7"></div>
+  </div>
+  <p class="hint">Haz clic en cualquier bloque para ver la neurociencia detrás.</p>
+</div>
+
+<div id="negocio" class="scr">
+  <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:1.25rem">El negocio del solopreneur sapiens no es un fin — es el vehículo que financia y da sentido a la vida integral. Debe cumplir tres criterios: alineación con capacidades paleolíticas, autonomía total del tiempo, y anti-fragilidad.</div>
+  <div class="model-block">
+    <div class="model-head">
+      <span class="model-title">Conocimiento profundo + IA como palanca</span>
+      <span class="model-tag" style="background:#E6F1FB;color:#0C447C">Modelo 1</span>
+    </div>
+    <div class="model-body">Vende conocimiento difícil de replicar — el que vive en tu experiencia encarnada, no en textos. La IA amplifica tu alcance sin crear dependencia de empleados. Un experto en ecosistemas locales, medicina ancestral, diseño biomimético, coaching somático: conocimiento que tarda años en construirse y que la IA no puede fabricar.</div>
+    <div class="model-pills">
+      <span class="pill">Consultoría de nicho profundo</span>
+      <span class="pill">Cursos de alta densidad</span>
+      <span class="pill">Mentoría 1:1</span>
+      <span class="pill">Investigación aplicada</span>
+    </div>
+  </div>
+  <div class="model-block">
+    <div class="model-head">
+      <span class="model-title">Creación con presencia física</span>
+      <span class="model-tag" style="background:#E1F5EE;color:#085041">Modelo 2</span>
+    </div>
+    <div class="model-body">Crea objetos, experiencias o espacios que requieren cuerpo y presencia. Activa circuitos paleolíticos de creación manual. La IA gestiona el marketing y la logística; tú haces lo que ninguna IA puede: crear con manos y presencia.</div>
+    <div class="model-pills">
+      <span class="pill">Artesanía de alto valor</span>
+      <span class="pill">Retiros y experiencias</span>
+      <span class="pill">Espacios curados</span>
+      <span class="pill">Cocina o fermentación</span>
+    </div>
+  </div>
+  <div class="model-block">
+    <div class="model-head">
+      <span class="model-title">Ecosistema digital semi-pasivo</span>
+      <span class="model-tag" style="background:#FAEEDA;color:#412402">Modelo 3</span>
+    </div>
+    <div class="model-body">Construye activos digitales que generan ingreso mientras duermes — pero con límite intencional de escala. El objetivo no es el hipercrecimiento sino el ingreso suficiente que financie la vida integral con el mínimo tiempo de pantalla posible.</div>
+    <div class="model-pills">
+      <span class="pill">Productos digitales evergreen</span>
+      <span class="pill">Newsletter de nicho</span>
+      <span class="pill">SaaS mínimo viable</span>
+      <span class="pill">Licencias de método</span>
+    </div>
+  </div>
+  <div class="sec">Métricas del negocio sapiens</div>
+  <div class="bar-row"><span class="bar-label">Horas/semana de trabajo</span><div class="bar-track"><div class="bar-fill" style="width:25%;background:#1D9E75"></div></div><span class="bar-val">≤20h</span></div>
+  <div class="bar-row"><span class="bar-label">% ingresos pasivos</span><div class="bar-track"><div class="bar-fill" style="width:60%;background:#185FA5"></div></div><span class="bar-val">>60%</span></div>
+  <div class="bar-row"><span class="bar-label">Clientes activos simultáneos</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:#854F0B"></div></div><span class="bar-val">≤10</span></div>
+  <div class="bar-row"><span class="bar-label">Dependencia de una plataforma</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:#E24B4A"></div></div><span class="bar-val">min</span></div>
+  <div class="bar-row"><span class="bar-label">Tiempo al aire libre/semana</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#1D9E75"></div></div><span class="bar-val">>15h</span></div>
+  <div class="warn" style="margin-top:1rem"><div class="warn-txt">La trampa del solopreneur moderno: optimizar el negocio hasta que el negocio se convierte en la vida. El negocio sapiens tiene un techo intencional — cuando cubre la vida integral, deja de escalar y empieza a profundizar.</div></div>
+</div>
+
+<div id="pilares" class="scr">
+  <div class="pillar-grid" id="pil-grid"></div>
+  <div id="pil-detail" class="pillar-detail"></div>
+</div>
+
+<div id="entorno" class="scr">
+  <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:1.25rem">El solopreneur sapiens no vive en cualquier entorno — lo diseña con la misma intención con que diseña su negocio.</div>
+  <div class="sec">Geografía</div>
+  <div class="row2">
+    <div class="card">
+      <div class="badge" style="background:#E1F5EE;color:#085041">Criterio 1</div>
+      <div class="card-title">Acceso a naturaleza en &lt;10 minutos</div>
+      <div class="card-body">No como hobby — como necesidad biológica. El contacto diario con ecosistemas no domesticados activa sistemas sensoriales que el entorno urbano mantiene atrofiados. Bosque, agua, tierra, alturas: el cerebro los necesita para calibrar.</div>
+    </div>
+    <div class="card">
+      <div class="badge" style="background:#E6F1FB;color:#0C447C">Criterio 2</div>
+      <div class="card-title">Ciudad pequeña o pueblo con infraestructura</div>
+      <div class="card-body">El punto medio: comunidad de 5,000–80,000 personas donde el número de Dunbar puede funcionar. Conoces a tus vecinos, tienes acceso a médico y fibra óptica, pero no hay cortisol de metrópolis.</div>
+    </div>
+  </div>
+  <div class="sec">La tribu</div>
+  <div class="card">
+    <div class="card-title">Círculos concéntricos intencionales</div>
+    <div class="card-body" style="margin-bottom:10px">El solopreneur sapiens diseña su red social con consciencia evolutiva. No más seguidores — más profundidad.</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+      <div style="background:#E1F5EE;border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500;color:#085041">3–5</div>
+        <div style="font-size:10px;color:#0F6E56;margin-top:2px">Núcleo íntimo</div>
+        <div style="font-size:10px;color:#0F6E56">Contacto casi diario</div>
+      </div>
+      <div style="background:#E6F1FB;border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500;color:#0C447C">12–20</div>
+        <div style="font-size:10px;color:#185FA5;margin-top:2px">Tribu activa</div>
+        <div style="font-size:10px;color:#185FA5">Contacto semanal</div>
+      </div>
+      <div style="background:#FAEEDA;border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500;color:#412402">50–150</div>
+        <div style="font-size:10px;color:#633806;margin-top:2px">Red ampliada</div>
+        <div style="font-size:10px;color:#633806">Contacto mensual</div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">Rituales de tribu</div>
+  <div class="row2">
+    <div class="card">
+      <div class="card-title">Comida compartida — mínimo 3x/semana</div>
+      <div class="card-body">El acto de preparar y comer juntos es uno de los activadores de oxitocina más potentes que existen. El solopreneur que come solo frente a pantalla todos los días es el agricultor moderno.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Movimiento grupal semanal</div>
+      <div class="card-body">El movimiento sincronizado en grupo activa la oxitocina de manera diferente al ejercicio solitario. Evolucionamos moviéndonos juntos.</div>
+    </div>
+  </div>
+  <div class="good"><div class="good-txt">El entorno no es el decorado de la vida — es parte de la arquitectura. Un solopreneur que diseña su entorno bien puede tener una calidad de vida objetivamente superior a la de un CEO con diez veces más ingresos.</div></div>
+</div>
+</div>
+
+</div>
+<script>
+const dayBlocks=[
+  {time:"5:30",name:"Despertar natural + silencio",bg:"#F1EFE8",bc:"#888780",tc:"#2C2C2A",neuro:"Cortisol matutino natural",nc:"#FAEEDA",ntc:"#412402",body:"El cortisol tiene un pico natural entre 6–8am llamado CAR (Cortisol Awakening Response). Despertarse con alarma lo interrumpe. Sin pantallas los primeros 20 minutos — el cerebro está en estado theta todavía."},
+  {time:"5:45",name:"Movimiento en naturaleza — 45–60 min",bg:"#E1F5EE",bc:"#1D9E75",tc:"#04342C",neuro:"Dopamina + BDNF + serotonina",nc:"#E1F5EE",ntc:"#085041",body:"El BDNF (factor neurotrófico derivado del cerebro) se dispara con ejercicio aeróbico en espacios abiertos — es literalmente fertilizante neuronal. La exposición a luz natural temprana sincroniza el reloj circadiano para las siguientes 16 horas."},
+  {time:"7:00",name:"Desayuno real + preparación consciente",bg:"#E1F5EE",bc:"#1D9E75",tc:"#04342C",neuro:"Microbioma + ciclo digestivo",nc:"#E1F5EE",ntc:"#085041",body:"Alimentos no procesados, con variedad. La microbiota intestinal produce el 90% de la serotonina del cuerpo — alimentarla bien es literalmente gestionar el estado de ánimo. Comer sin pantallas."},
+  {time:"8:00",name:"Bloque de trabajo profundo — 2.5h",bg:"#E6F1FB",bc:"#185FA5",tc:"#042C53",neuro:"Flow + dopamina de logro",nc:"#E6F1FB",ntc:"#0C447C",body:"El cerebro alcanza su pico cognitivo 2–4 horas después de despertar. Sin notificaciones, sin reuniones, sin email. 90 minutos es el ciclo ultradiano natural de concentración — con una pausa de 10–20 min entre ciclos. Máximo 2 ciclos por día."},
+  {time:"10:45",name:"Pausa activa — movimiento libre",bg:"#E1F5EE",bc:"#1D9E75",tc:"#04342C",neuro:"Reset del sistema nervioso",nc:"#E1F5EE",ntc:"#085041",body:"No el café frente al computador — movimiento real. El sistema nervioso parasimpático necesita tiempo explícito de recuperación entre bloques de trabajo intenso."},
+  {time:"11:00",name:"Bloque creativo / exploración — 90 min",bg:"#FAEEDA",bc:"#BA7517",tc:"#412402",neuro:"Dopamina anticipatoria",nc:"#FAEEDA",ntc:"#412402",body:"Aquí la mente vaga con intención. El estado mental de exploración — red neuronal por defecto activada — es donde ocurren las conexiones más valiosas. No se puede forzar; se cultiva con espacio."},
+  {time:"12:30",name:"Comida lenta + tribu — 1.5h",bg:"#EEEDFE",bc:"#534AB7",tc:"#26215C",neuro:"Oxitocina + serotonina social",nc:"#EEEDFE",ntc:"#26215C",body:"Almuerzo con personas. La digestión óptima ocurre en estado parasimpático. Comer con prisa y ansiedad es literalmente tóxico para el intestino."},
+  {time:"14:00",name:"Siesta o descanso no-pantalla — 20–30 min",bg:"#F1EFE8",bc:"#888780",tc:"#2C2C2A",neuro:"Consolidación de memoria + adenosina",nc:"#F1EFE8",ntc:"#444441",body:"La siesta corta reduce adenosina, consolida lo aprendido en la mañana, y restaura la capacidad de atención para la tarde. El ciclo bifásico del sueño es más natural que el monofásico moderno."},
+  {time:"14:30",name:"Trabajo operativo + IA — 2h",bg:"#E6F1FB",bc:"#185FA5",tc:"#042C53",neuro:"Dopamina de completar tareas",nc:"#E6F1FB",ntc:"#0C447C",body:"El trabajo menos exigente cognitivamente: email (con límite), administración, reuniones necesarias, tareas delegables a IA. La IA toma el 70–80% de este bloque."},
+  {time:"16:30",name:"Habilidad manual o arte — 1h",bg:"#FAEEDA",bc:"#BA7517",tc:"#412402",neuro:"Cerebelo + circuitos de maestría",nc:"#FAEEDA",ntc:"#412402",body:"Algo que se hace con las manos: instrumento, carpintería, cerámica, cocina, huerta, dibujo. Los circuitos de maestría manual producen satisfacción que el trabajo digital no puede replicar."},
+  {time:"17:30",name:"Movimiento social — deporte, tribu",bg:"#EEEDFE",bc:"#534AB7",tc:"#26215C",neuro:"Oxitocina de ritmo compartido",nc:"#EEEDFE",ntc:"#26215C",body:"El movimiento sincronizado activa un circuito de oxitocina diferente al de la conversación — más primitivo y más potente. Evolucionamos bailando alrededor del fuego, moviéndonos en grupo."},
+  {time:"19:00",name:"Preparación y cena — sin pantallas",bg:"#E1F5EE",bc:"#1D9E75",tc:"#04342C",neuro:"Fin del cortisol + inicio melatonina",nc:"#E1F5EE",ntc:"#085041",body:"La luz azul de pantallas después del atardecer suprime la melatonina durante 2–3 horas. Cenar con luz cálida y sin dispositivos es el inicio del protocolo de sueño."},
+  {time:"20:30",name:"Ritual de cierre — reflexión o lectura",bg:"#F1EFE8",bc:"#888780",tc:"#2C2C2A",neuro:"Estado theta + procesamiento",nc:"#F1EFE8",ntc:"#444441",body:"Diario de 3 líneas, lectura física, o silencio. El estado hipnagógico previo al sueño es donde el cerebro procesa y consolida."},
+  {time:"21:30",name:"Sueño — 8h de calidad",bg:"#F1EFE8",bc:"#888780",tc:"#2C2C2A",neuro:"Sistema glinfático + consolidación",nc:"#F1EFE8",ntc:"#444441",body:"Durante el sueño el cerebro activa el sistema glinfático — se lava, eliminando proteínas tóxicas. Las primeras 2h son sueño profundo de reparación; las últimas 2h son REM de consolidación emocional y creativa."}
+];
+
+function renderDay(){
+  const c=document.getElementById('day-blocks');
+  c.innerHTML=dayBlocks.map((b,i)=>`
+    <div class="block" onclick="showBlock(${i})">
+      <div class="block-time">${b.time}</div>
+      <div class="block-bar" style="background:${b.bg};border-left:3px solid ${b.bc}">
+        <div class="block-name" style="color:${b.tc}">${b.name}</div>
+      </div>
+    </div>`).join('');
+}
+
+function showBlock(i){
+  const b=dayBlocks[i];
+  const d=document.getElementById('block-detail');
+  d.style.display='block';
+  document.getElementById('bd-title').textContent=b.name;
+  const n=document.getElementById('bd-neuro');
+  n.textContent=b.neuro;n.style.background=b.nc;n.style.color=b.ntc;
+  document.getElementById('bd-body').textContent=b.body;
+}
+
+const pillars=[
+  {name:"Cuerpo calibrado",sub:"Biología como base",color:"#1D9E75",bg:"#E1F5EE",tc:"#085041",desc:"No el cuerpo como instrumento de producción — el cuerpo como la inteligencia más antigua que tienes. El solopreneur sapiens invierte en su cuerpo como su activo primario.",items:["8h de sueño reparador","Movimiento en naturaleza diario","Dieta diversa, mínimo procesada","Ciclos de ayuno natural","Exposición a frío/calor como estrés hormético","Microbioma gestionado con intención"]},
+  {name:"Conocimiento vivo",sub:"Lo que ninguna IA replica",color:"#185FA5",bg:"#E6F1FB",tc:"#0C447C",desc:"No información acumulada — conocimiento encarnado que se expresa en acción. El solopreneur sapiens sigue aprendiendo como el nómada: a través de la experiencia directa, la práctica manual, la observación de sistemas vivos.",items:["Lectura profunda sin scroll","Habilidades manuales en progreso","Conocimiento de ecosistema local","Aprendizaje de al menos un idioma adicional","Filosofía y pensamiento sistémico","Contacto con mentores de distintas generaciones"]},
+  {name:"Tribu real",sub:"Oxitocina no-digital",color:"#534AB7",bg:"#EEEDFE",tc:"#26215C",desc:"3–5 personas de confianza absoluta con contacto físico frecuente. La diferencia con las conexiones digitales es total: la oxitocina requiere presencia física, contacto, sincronía de movimiento.",items:["Núcleo íntimo con contacto casi diario","Rituales semanales de comida compartida","Movimiento grupal regular","Reciprocidad real (no transaccional)","Comunidad local con propósito compartido","Desconexión deliberada de redes sociales"]},
+  {name:"Autonomía total",sub:"Libertad de movimiento",color:"#854F0B",bg:"#FAEEDA",tc:"#412402",desc:"Ningún jefe, ningún lugar obligatorio, ningún horario impuesto. El solopreneur sapiens diseña su negocio para que funcione desde cualquier lugar del mundo con conexión.",items:["Ingresos no atados a presencia física","Decisiones tomadas con criterio propio","Tiempo suficiente para aburrirse","Capacidad de migrar con las estaciones","No dependencia de un solo cliente","Agenda diseñada por biología, no por mercado"]},
+  {name:"Creación con sentido",sub:"El trabajo como expresión",color:"#993C1D",bg:"#FAECE7",tc:"#4A1B0C",desc:"El trabajo que activa los mismos circuitos que activaba la caza, la construcción del refugio, la preparación del festín. No trabajo como medio para dinero — trabajo como expresión de lo que eres.",items:["Trabajo en zona de habilidad única","Creación que deja huella tangible","Impacto medible en personas reales","Retroalimentación directa del resultado","Mezcla de mente y cuerpo en el proceso","Algo que se mejora con los años, no con la escala"]},
+  {name:"Anti-fragilidad",sub:"Prosperar en el caos",color:"#3C3489",bg:"#EEEDFE",tc:"#26215C",desc:"El cazador-recolector no buscaba estabilidad — buscaba la capacidad de prosperar en entornos variables. El solopreneur sapiens construye sistemas que se vuelven más fuertes bajo presión.",items:["Múltiples fuentes de ingreso","Habilidades que valen en cualquier contexto","Ahorros para 12 meses de libertad","Cuerpo entrenado para estrés hormético","Red de confianza que funciona en crisis","Ninguna dependencia de plataformas únicas"]}
+];
+
+function renderPillars(){
+  const g=document.getElementById('pil-grid');
+  g.innerHTML=pillars.map((p,i)=>`
+    <div class="pillar" id="pp${i}" onclick="selPillar(${i})" style="border-color:${p.color}33">
+      <div class="p-dot" style="background:${p.bg};color:${p.tc}">${i+1}</div>
+      <div class="p-name">${p.name}</div>
+      <div class="p-sub">${p.sub}</div>
+    </div>`).join('');
+}
+
+function selPillar(i){
+  document.querySelectorAll('.pillar').forEach((c,j)=>{
+    if(j===i){c.classList.add('sel');c.style.borderColor=pillars[i].color}
+    else{c.classList.remove('sel');c.style.borderColor=pillars[j].color+'33'}
+  });
+  const p=pillars[i];
+  document.getElementById('pil-detail').innerHTML=`
+    <div style="font-size:13px;font-weight:500;color:${p.color};margin-bottom:8px">${p.name}</div>
+    <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:12px">${p.desc}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:5px">
+      ${p.items.map(it=>`<span style="font-size:11px;padding:3px 10px;border-radius:99px;background:${p.bg};color:${p.tc};border:0.5px solid ${p.color}33">${it}</span>`).join('')}
+    </div>`;
+}
+
+function show(id,btn){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+
+renderDay();
+renderPillars();
+selPillar(0);
+</script>
+</body>
+</html>
